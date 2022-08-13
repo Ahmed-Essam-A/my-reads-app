@@ -1,7 +1,7 @@
 import "./BookData.css";
 import BookShelfChanger from "./BookShelfChanger";
 
-const BookData = ( {book, changeBookShelf}) => {
+const BookData = ( {book, changeBookShelf, changedBooks}) => {
 
 
   return (
@@ -9,7 +9,7 @@ const BookData = ( {book, changeBookShelf}) => {
       <div className="book-top">
         <div className="book-cover" style={{ width: 128, height: 193,backgroundImage:`url(http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api})`}}></div>
         <div className="book-shelf-changer">
-        <BookShelfChanger item={book.shelf} onChange={(e) => changeBookShelf(book, e.target.value)}/>
+        <BookShelfChanger item={book.shelf} onChange={(e) => changeBookShelf(book, e.target.value)} changedBooks={changedBooks}/>
         </div>
       </div>
       <div className="book-title">{book.title}</div>

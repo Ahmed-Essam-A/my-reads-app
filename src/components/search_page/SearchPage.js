@@ -4,17 +4,16 @@ import "./SearchPage.css";
 import * as BooksAPI from "../../BooksAPI";
 import BookData from "../main_page/BookData";
 
-
-const SearchPage = ({ changeBookShelfHandler, changedBooks }) => {
+const SearchPage = ({changedBooks, changeBookShelfHandler}) => {
   const [query, setQuery] = useState([]);
   const [searchBook, setSearchBook] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
+
 
   const queryChangeHandler = (event) => {
     event.preventDefault();
     setQuery(event.target.value);
   };
-
 
   useEffect(() => {
     const searchTime = setTimeout(() => {
@@ -23,14 +22,14 @@ const SearchPage = ({ changeBookShelfHandler, changedBooks }) => {
           if (data.error) {
             setSearchResult(<h2>No Books Found</h2>);
           } else {
-            setSearchBook(data);
+            setSearchBook(data)
             setSearchResult(
               searchBook.map((b) => (
                 <li key={b.id}>
                   <BookData
                     book={b}
+                    changeBookShelf={changeBookShelfHandler}
                     changedBooks={changedBooks}
-                    changeBookShelfHandler={changeBookShelfHandler}
                   />
                 </li>
               ))
@@ -48,7 +47,6 @@ const SearchPage = ({ changeBookShelfHandler, changedBooks }) => {
   }, [query]);
 
   
- 
   return (
     <div className="search-books">
       <SearchBar searchValue={query} onSearchChange={queryChangeHandler} />

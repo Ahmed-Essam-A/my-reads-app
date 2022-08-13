@@ -13,7 +13,7 @@ function PageNotFound() {
   );
 }
 
-function App({ book }) {
+function App({book}) {
   useEffect(() => {
     BooksAPI.getAll().then((data) => {
       setChangedBooks(data);
@@ -32,6 +32,7 @@ function App({ book }) {
     });
     setChangedBooks(updatedBook);
     BooksAPI.update(book, targetShelf).then((data) => {
+      setChangedBooks(updatedBook);
     });
   };
 
@@ -40,7 +41,7 @@ function App({ book }) {
       <div className="app">
 
         <Routes>
-          <Route path="/search" element={<SearchPage changedBooks={changedBooks} changeBookShelfHandler={changeBookShelfHandler}/>} />
+          <Route path="/search" element={<SearchPage changedBooks={changedBooks} changeBookShelfHandler={changeBookShelfHandler} book={book} />} />
           <Route path="/" element={<MainPage changedBooks={changedBooks} changeBookShelfHandler={changeBookShelfHandler} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

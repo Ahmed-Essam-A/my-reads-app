@@ -11,7 +11,7 @@ const ShelvesList = ({ changedBooks,changeBookShelfHandler }) => {
     <div>
       <BookShelf title="Currently Reading" books={curReading} changeBookShelfHandler={changeBookShelfHandler}/>
       <BookShelf title="Want To Read" books={wToRead} changeBookShelfHandler={changeBookShelfHandler}/>
-      <BookShelf title="Read" books={read} changeBookShelfHandler={changeBookShelfHandler}/>
+      <BookShelf title="Read" books={read} changeBookShelfHandler={changeBookShelfHandler} />
     </div>
   );
 };
