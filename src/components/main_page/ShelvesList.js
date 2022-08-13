@@ -2,10 +2,10 @@ import React from "react";
 import "./ShelvesList.css";
 import BookShelf from "./BookShelf";
 
-const ShelvesList = ({ books,changeBookShelfHandler }) => {
-  const curReading = books.filter (book => book.shelf === "currentlyReading");
-  const wToRead = books.filter (book => book.shelf === "wantToRead");
-  const read = books.filter (book => book.shelf === "read");
+const ShelvesList = ({ changedBooks,changeBookShelfHandler }) => {
+  const curReading = changedBooks.filter (book => book.shelf === "currentlyReading");
+  const wToRead = changedBooks.filter (book => book.shelf === "wantToRead");
+  const read = changedBooks.filter (book => book.shelf === "read");
 
   return (
     <div>

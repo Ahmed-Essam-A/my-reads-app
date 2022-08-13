@@ -1,8 +1,8 @@
-import { useState } from "react";
 import "./BookData.css";
 import BookShelfChanger from "./BookShelfChanger";
 
 const BookData = ( {book, changeBookShelf}) => {
+
 
   return (
     <div className="book">

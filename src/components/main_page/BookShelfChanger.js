@@ -3,8 +3,8 @@ import "./BookShelfChanger.css";
 const BookShelfChanger = ({item, onChange}) => {  
 
     return (
-      <select defaultValue={item} onChange={onChange} >
-        <option value="none" disabled>
+      <select defaultValue={item? item :"none" } onChange={onChange} >
+        <option value="move" disabled>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>

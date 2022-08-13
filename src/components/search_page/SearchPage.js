@@ -3,7 +3,9 @@ import SearchBar from "./SearchBar";
 import "./SearchPage.css";
 import * as BooksAPI from "../../BooksAPI";
 import BookData from "../main_page/BookData";
-const SearchPage = ({  }) => {
+
+
+const SearchPage = ({ changeBookShelfHandler, changedBooks }) => {
   const [query, setQuery] = useState([]);
   const [searchBook, setSearchBook] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
@@ -13,9 +15,10 @@ const SearchPage = ({  }) => {
     setQuery(event.target.value);
   };
 
+
   useEffect(() => {
     const searchTime = setTimeout(() => {
-      if (query) {
+      if (query !== "") {
         BooksAPI.search(query).then((data) => {
           if (data.error) {
             setSearchResult(<h2>No Books Found</h2>);
@@ -26,6 +29,7 @@ const SearchPage = ({  }) => {
                 <li key={b.id}>
                   <BookData
                     book={b}
+                    changedBooks={changedBooks}
                     changeBookShelfHandler={changeBookShelfHandler}
                   />
                 </li>
@@ -33,6 +37,8 @@ const SearchPage = ({  }) => {
             );
           }
         });
+      } else {
+        setSearchResult([]);
       }
     }, 200);
 
@@ -41,24 +47,8 @@ const SearchPage = ({  }) => {
     };
   }, [query]);
 
-  const [changedBooks, setChangedBooks] = useState(searchBook);
-
-  const changeBookShelfHandler = (book, targetShelf) => {
-    const updatedBook = changedBooks.map((s) => {
-      if (s.id === book.id) {
-        book.shelf = targetShelf;
-        return book;
-      }
-      return s;
-    });
-    setChangedBooks(updatedBook);
-    BooksAPI.update(book, targetShelf).then((data) => {
-      setChangedBooks(updatedBook);
-    });
-  };
-
   
-
+ 
   return (
     <div className="search-books">
       <SearchBar searchValue={query} onSearchChange={queryChangeHandler} />
